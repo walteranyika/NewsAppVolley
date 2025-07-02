@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.android.volley.toolbox.JsonObjectRequest
 import com.walter.volleyfetch.ui.theme.MyAppTheme
 import androidx.core.net.toUri
+import coil.compose.AsyncImage
 
 
 class MainActivity : ComponentActivity() {
@@ -114,6 +115,17 @@ fun ArticleCard(article: Article, context: Context) {
         context.startActivity(i)
     }) {
         Column(modifier = Modifier.padding(8.dp)) {
+            if (article.imageUrl.isNotEmpty()) { // Check if imageUrl is not empty
+                AsyncImage(
+                    model = article.imageUrl,
+                    contentDescription = "Article image", // Provide a meaningful content description
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(180.dp), // Adjust height as needed
+                    contentScale = androidx.compose.ui.layout.ContentScale.Crop // Or other scale as needed
+                )
+                Spacer(Modifier.height(8.dp)) // Add some space between image and text
+            }
             Text(article.title, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(10.dp))
             Text(body)

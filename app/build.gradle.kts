@@ -51,6 +51,7 @@ dependencies {
     val nav_version = "2.9.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("io.coil-kt:coil-compose:2.6.0") // Check for the latest version
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
