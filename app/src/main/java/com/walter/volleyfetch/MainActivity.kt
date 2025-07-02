@@ -103,6 +103,10 @@ fun NewsScreen() {
 
 @Composable
 fun ArticleCard(article: Article, context: Context) {
+    val body = when{
+        article.description.length > 100 -> article.description.substring(0, 100) + "..."
+        else -> article.description
+    }
     Card(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
         onClick = {
         val i = Intent(Intent.ACTION_VIEW)
@@ -112,7 +116,8 @@ fun ArticleCard(article: Article, context: Context) {
         Column(modifier = Modifier.padding(8.dp)) {
             Text(article.title, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(10.dp))
-            Text(article.description)
+            Text(body)
+            Spacer(Modifier.height(6.dp))
             Text(article.pubDate)
         }
     }
